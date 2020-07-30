@@ -17,7 +17,7 @@
     <hr />
     <h1>Async Component</h1>
     <div>
-      <label>
+      <label v-flex:row="'center center'" style="height: 40px; border: 1px solid red;">
         <input type="checkbox" v-model="showComponent" />
         <span>showComponent: {{ showComponent }}</span>
       </label>
@@ -29,6 +29,7 @@
 import Todolist from "@/components/Todolist";
 import FunctionalTodolist from "@/components/FunctionalTodolist";
 import FunctionalTemplateTodolist from "@/components/FunctionalTemplateTodolist";
+import DirectiveFlex from "@/directives/flex";
 
 export default {
   name: "App",
@@ -37,6 +38,9 @@ export default {
     FunctionalTodolist,
     FunctionalTemplateTodolist,
     AsyncComp: () => import("@/components/AsyncComp")
+  },
+  directives: {
+    flex: DirectiveFlex
   },
   data() {
     return {
