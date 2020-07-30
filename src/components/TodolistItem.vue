@@ -1,8 +1,12 @@
 <template>
   <div>
-    <input type="checkbox" :checked="checked" />
+    <slot name="header" v-bind:completed="checked">
+      <input type="checkbox" :checked="checked" />
+    </slot>
     <input type="text" v-model="inputValue" />
-    <button>삭제</button>
+    <slot name="footer" v-bind:title="title">
+      <button>삭제</button>
+    </slot>
   </div>
 </template>
 <script>
