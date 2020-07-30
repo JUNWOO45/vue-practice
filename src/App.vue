@@ -13,6 +13,16 @@
     <keep-alive>
       <component :is="componentName" :todos="todos" />
     </keep-alive>
+
+    <hr />
+    <h1>Async Component</h1>
+    <div>
+      <label>
+        <input type="checkbox" v-model="showComponent" />
+        <span>showComponent: {{ showComponent }}</span>
+      </label>
+    </div>
+    <async-comp v-if="showComponent"></async-comp>
   </div>
 </template>
 <script>
@@ -25,7 +35,8 @@ export default {
   components: {
     Todolist,
     FunctionalTodolist,
-    FunctionalTemplateTodolist
+    FunctionalTemplateTodolist,
+    AsyncComp: () => import("@/components/AsyncComp")
   },
   data() {
     return {
@@ -42,7 +53,8 @@ export default {
         }
       ],
       newTodoTitle: "",
-      componentName: "Todolist"
+      componentName: "Todolist",
+      showComponent: false
     };
   },
   methods: {
