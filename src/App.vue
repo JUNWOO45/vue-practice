@@ -3,15 +3,16 @@
     <h1>TODO LIST</h1>
     <input type="text" v-model="newTodoTitle" />
     <button @click="addTodo">추가</button>
-    <todolist :todos="todos"></todolist>
+    <div>
+      <button @click="componentName = 'Todolist'">general component</button>
+      <button @click="componentName = 'FunctionalTodolist'">functional component</button>
+      <button @click="componentName = 'FunctionalTemplateTodolist'">functional template component</button>
+    </div>
 
-    <hr />
-    <h1>Functional Component</h1>
-    <functional-todolist :todos="todos"></functional-todolist>
-
-    <hr />
-    <h1>Functional Template Component</h1>
-    <functional-template-todolist :todos="todos"></functional-template-todolist>
+    <div>Dynamic Component is : {{ componentName }}</div>
+    <keep-alive>
+      <component :is="componentName" :todos="todos" />
+    </keep-alive>
   </div>
 </template>
 <script>
@@ -40,7 +41,8 @@ export default {
           completed: false
         }
       ],
-      newTodoTitle: ""
+      newTodoTitle: "",
+      componentName: "Todolist"
     };
   },
   methods: {
