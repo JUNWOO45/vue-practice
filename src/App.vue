@@ -5,8 +5,12 @@
     <button @click="addTodo">추가</button>
     <div>
       <button @click="componentName = 'Todolist'">general component</button>
-      <button @click="componentName = 'FunctionalTodolist'">functional component</button>
-      <button @click="componentName = 'FunctionalTemplateTodolist'">functional template component</button>
+      <button @click="componentName = 'FunctionalTodolist'">
+        functional component
+      </button>
+      <button @click="componentName = 'FunctionalTemplateTodolist'">
+        functional template component
+      </button>
     </div>
 
     <div>Dynamic Component is : {{ componentName }}</div>
@@ -17,12 +21,21 @@
     <hr />
     <h1>Async Component</h1>
     <div>
-      <label v-flex:row="'center center'" style="height: 40px; border: 1px solid red;">
+      <label
+        v-flex:row="'center center'"
+        style="height: 40px; border: 1px solid red;"
+      >
         <input type="checkbox" v-model="showComponent" />
         <span>showComponent: {{ showComponent }}</span>
       </label>
     </div>
     <async-comp v-if="showComponent"></async-comp>
+    <hr />
+    <div v-flex:column="'flex-start center'">
+      <router-link to="/">go '/'</router-link>
+      <router-link to="/sub">go '/sub'</router-link>
+    </div>
+    <router-view></router-view>
   </div>
 </template>
 <script>
@@ -37,10 +50,10 @@ export default {
     Todolist,
     FunctionalTodolist,
     FunctionalTemplateTodolist,
-    AsyncComp: () => import("@/components/AsyncComp")
+    AsyncComp: () => import("@/components/AsyncComp"),
   },
   directives: {
-    flex: DirectiveFlex
+    flex: DirectiveFlex,
   },
   data() {
     return {
@@ -48,28 +61,28 @@ export default {
         {
           id: 1,
           title: "AAA",
-          completed: true
+          completed: true,
         },
         {
           id: 2,
           title: "BBB",
-          completed: false
-        }
+          completed: false,
+        },
       ],
       newTodoTitle: "",
       componentName: "Todolist",
-      showComponent: false
+      showComponent: false,
     };
   },
   methods: {
     addTodo() {
       this.todos.push({
         title: this.newTodoTitle,
-        completed: false
+        completed: false,
       });
 
       this.newTodoTitle = "";
-    }
-  }
+    },
+  },
 };
 </script>
